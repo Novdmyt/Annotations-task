@@ -6,15 +6,15 @@ import java.lang.reflect.Method;
 
 public class ProductHandler {
 
-    public static void main(String[] args) throws  {
+    public static void main(String[] args) throws NoSuchMethodException  {
         new ProductInfo();
-        Class<ProductInfo> infoClass = .class;
+        Class<ProductInfo> infoClass = ProductInfo.class;
         getAnnot(infoClass);
-        Method method = infoClass.getMethod();
+        Method method = infoClass.getMethod("getData");
         getAnnot(method);
     }
 
-    static void getAnnot(AnnotatedElement element) {
+    private static void getAnnot(AnnotatedElement element) {
 
         try  {
 
@@ -23,10 +23,10 @@ public class ProductHandler {
             for (Annotation annotation : annotations) {
                 if (annotation instanceof Product product) {
                     System.out.printf("Product: %s, quota: %d%n",
-                            );
+                            product.name(), product.quota());
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }
